@@ -297,6 +297,7 @@ img {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 15%;
   border: 4px solid var(--bg);
 }
 
