@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nick Eisele — Software Engineer</title>
+  <meta name="description" content="Nick Eisele — Full-stack developer & SDE 2 at Amazon. Java, React, AWS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">NE</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="njeisele-resume.pdf" class="btn-outline" target="_blank">Resume</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ─── MOBILE MENU ─── -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#projects" onclick="closeMobile()">Projects</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="njeisele-resume.pdf" target="_blank" onclick="closeMobile()">Resume</a>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-greeting">Hey, I'm</p>
+        <h1 class="hero-name">Nick Eisele<span class="accent">.</span></h1>
+        <p class="hero-role">Full-Stack Engineer &amp; SDE 2 at <span class="highlight">Amazon</span></p>
+        <p class="hero-desc">I build workforce staffing applications in the High Volume Hiring org — solving complex problems to deliver intuitive products with Java, React, and AWS.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="mailto:nickolas_eisele@alumni.brown.edu" class="btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="image-ring">
+          <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/me-circ.png" alt="Nick Eisele" width="280" height="280">
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- ─── ABOUT ─── -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a full-stack developer with a passion for building products that make an impact. Currently at <strong>Amazon</strong> as an SDE 2, I work in the High Volume Hiring organization where I build workforce staffing applications that serve thousands of users.</p>
+          <p>My core stack revolves around <strong>Java</strong>, <strong>React</strong>, and <strong>AWS</strong>, but I'm always exploring new technologies and pushing the boundaries of what's possible on the web.</p>
+          <p>I'm a proud <strong>Brown University</strong> alum, and when I'm not writing code I'm probably tinkering with side projects — from synthesizers to chess engines.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon">&#9001;/&#9002;</div>
+            <h3>Frontend</h3>
+            <p>React, TypeScript, Next.js, HTML/CSS</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">&#9881;</div>
+            <h3>Backend</h3>
+            <p>Java, Node.js, REST APIs, GraphQL</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">&#9729;</div>
+            <h3>Cloud</h3>
+            <p>AWS, Lambda, DynamoDB, S3, CDK</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">&#9670;</div>
+            <h3>Tools</h3>
+            <p>Git, Docker, CI/CD, Agile/Scrum</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROJECTS ─── -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">A collection of things I've built — click to explore.</p>
+      <div class="project-grid">
+
+        <a href="https://portfolio-nickolas-eiseles-projects.vercel.app/imageFiltering" class="project-card" target="_blank">
+          <div class="project-img">
+            <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/fish.jpg" alt="Image Filtering" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3>Image Filtering</h3>
+            <p>Real-time image processing with custom convolution filters and effects.</p>
+            <span class="project-link">Explore &rarr;</span>
+          </div>
+        </a>
+
+        <a href="https://portfolio-nickolas-eiseles-projects.vercel.app/synthesizer" class="project-card" target="_blank">
+          <div class="project-img">
+            <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/synth.jpg" alt="Synthesizer" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3>Synthesizer</h3>
+            <p>Web-based audio synthesizer with oscillators, filters, and effects chains.</p>
+            <span class="project-link">Explore &rarr;</span>
+          </div>
+        </a>
+
+        <a href="https://portfolio-nickolas-eiseles-projects.vercel.app/editor" class="project-card" target="_blank">
+          <div class="project-img">
+            <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/code.png" alt="Code Editor" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3>Code Editor</h3>
+            <p>Feature-rich browser-based code editor with syntax highlighting and live preview.</p>
+            <span class="project-link">Explore &rarr;</span>
+          </div>
+        </a>
+
+        <a href="https://portfolio-nickolas-eiseles-projects.vercel.app/chess" class="project-card" target="_blank">
+          <div class="project-img">
+            <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/chess.jpg" alt="Online Chess" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3>Online Chess</h3>
+            <p>Multiplayer chess with real-time moves, move validation, and game history.</p>
+            <span class="project-link">Explore &rarr;</span>
+          </div>
+        </a>
+
+        <a href="https://portfolio-nickolas-eiseles-projects.vercel.app/algorithms" class="project-card" target="_blank">
+          <div class="project-img">
+            <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/visualizer.png" alt="Algorithm Visualizer" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3>Algorithm Visualizer</h3>
+            <p>Interactive visualizations for sorting, pathfinding, and graph algorithms.</p>
+            <span class="project-link">Explore &rarr;</span>
+          </div>
+        </a>
+
+        <a href="https://portfolio-nickolas-eiseles-projects.vercel.app/finance" class="project-card" target="_blank">
+          <div class="project-img">
+            <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/finance.png" alt="Finance Dashboard" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3>Finance Dashboard</h3>
+            <p>Data-driven financial dashboard with charts, analytics, and portfolio tracking.</p>
+            <span class="project-link">Explore &rarr;</span>
+          </div>
+        </a>
+
+        <a href="https://portfolio-nickolas-eiseles-projects.vercel.app/smurfVillage" class="project-card" target="_blank">
+          <div class="project-img">
+            <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/smurfs.jpg" alt="Smurf Village" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3>Smurf Village</h3>
+            <p>3D interactive village scene built with WebGL and creative shaders.</p>
+            <span class="project-link">Explore &rarr;</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section class="section" id="contact">
+    <div class="container contact-container">
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="contact-text">I'm always open to new opportunities and conversations. Whether you have a project in mind or just want to say hey — my inbox is open.</p>
+      <a href="mailto:nickolas_eisele@alumni.brown.edu" class="btn-primary btn-lg">Say Hello</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <p>&copy; 2024 Nick Eisele. Built with care.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
