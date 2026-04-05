@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Explorer — Nick Eisele</title>
+  <meta name="description" content="A full-stack file explorer with real-time search, storage analysis, and WebSocket file watching.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">NE</a>
+    <div class="nav-links">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#projects" onclick="closeMobile()">Projects</a>
+    <a href="index.html#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <header class="project-hero">
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+    <h1>File Explorer</h1>
+    <p class="project-hero-desc">A full-stack file system interface with real-time indexing, instant search, and built-in file viewers.</p>
+    <div class="project-meta">
+      <span class="tag">React</span>
+      <span class="tag">TypeScript</span>
+      <span class="tag">Express</span>
+      <span class="tag">WebSockets</span>
+      <span class="tag">Electron</span>
+      <span class="tag">Vite</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="showcase">
+        <img src="img/explorer-home.jpg" alt="File Explorer — Home view" class="showcase-img">
+        <p class="showcase-caption">Home view — recent directories, quick search, and action buttons.</p>
+      </div>
+
+      <div class="project-overview">
+        <div class="overview-block">
+          <h2>What it is</h2>
+          <p>A desktop file explorer built from scratch with React and TypeScript. It indexes your entire filesystem in the background, enabling instant search across tens of thousands of files. The backend watches for file changes in real-time via WebSockets, so the index stays fresh without manual refreshes.</p>
+          <p>It's not trying to replace Windows Explorer — it's built for the way I actually use a file system: search first, browse second, with built-in viewers for the files I open most.</p>
+        </div>
+
+        <div class="overview-block">
+          <h2>Key Features</h2>
+          <ul class="feature-list">
+            <li><strong>Instant file search</strong> — Background indexer crawls your filesystem and builds a searchable index of 30,000+ files. Search results appear as you type.</li>
+            <li><strong>Real-time file watching</strong> — Chokidar watches for filesystem changes and pushes updates via WebSocket, keeping the index current without polling.</li>
+            <li><strong>Built-in viewers</strong> — Video player and text viewer for common file types, so you don't need to leave the app to preview files.</li>
+            <li><strong>Storage analyzer</strong> — Visual breakdown of disk usage by directory, helping you find what's eating your storage.</li>
+            <li><strong>Recent directories</strong> — Quick access to your most-used folders, tracked automatically.</li>
+            <li><strong>Context menus</strong> — Right-click actions for common file operations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="section-title">In Action</h2>
+
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <img src="img/explorer-home.jpg" alt="Explorer — Home dashboard" loading="lazy">
+          <h3>Home Dashboard</h3>
+          <p>Recent directories with metadata, search bar, and quick navigation to Browse and Storage Analyzer.</p>
+        </div>
+        <div class="screenshot-card">
+          <img src="img/explorer-search.jpg" alt="Explorer — Search" loading="lazy">
+          <h3>Search</h3>
+          <p>Type to search across your entire indexed filesystem. Results update as the query changes.</p>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>Architecture</h2>
+        <p>The app runs as three concurrent processes in development: a Vite dev server for the React frontend, an Express + WebSocket backend for the API and file watching, and Electron for the desktop shell.</p>
+        <div class="arch-diagram">
+          <div class="arch-layer">
+            <span class="arch-label">Frontend</span>
+            <span class="arch-detail">React + TypeScript (Vite) — FileBrowser, SearchBar, VideoPlayer, TextViewer</span>
+          </div>
+          <div class="arch-arrow">&darr; HTTP + WebSocket</div>
+          <div class="arch-layer">
+            <span class="arch-label">Backend</span>
+            <span class="arch-detail">Express API — file listing, search, storage analysis</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Indexer</span>
+            <span class="arch-detail">Background scanner + Chokidar file watcher — real-time index updates</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Shell</span>
+            <span class="arch-detail">Electron with custom titlebar and system integration</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>Tech deep dive</h2>
+        <p>The indexer is the most interesting part. On startup, it recursively walks the user's home directory, building an in-memory index of every file with its path, size, and modification time. This initial scan indexes ~30,000 files in a few seconds. Once the scan completes, Chokidar takes over and watches for filesystem events (create, modify, delete), pushing incremental updates through the WebSocket connection to keep the frontend in sync.</p>
+        <p>Search is prefix-matched against filenames in the index, with results ranked by recency and relevance. The frontend debounces input and streams results as they arrive, so it feels instant even on large result sets.</p>
+        <p>The file browser uses breadcrumb navigation and lazy-loads directory contents from the API. The built-in video player handles common formats natively, and the text viewer supports syntax highlighting for code files.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2024 Nick Eisele. Built with care.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

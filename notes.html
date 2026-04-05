@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes — Nick Eisele</title>
+  <meta name="description" content="A local-first notes app with wild themes — Deus Ex, Star Trek, Peanuts, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">NE</a>
+    <div class="nav-links">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#projects" onclick="closeMobile()">Projects</a>
+    <a href="index.html#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <header class="project-hero">
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+    <h1>Notes</h1>
+    <p class="project-hero-desc">A local-first notes app with themed interfaces — because writing should feel good.</p>
+    <div class="project-meta">
+      <span class="tag">Vanilla JS</span>
+      <span class="tag">Node.js</span>
+      <span class="tag">Electron</span>
+      <span class="tag">PWA</span>
+      <span class="tag">IndexedDB</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="showcase">
+        <img src="img/notes-peanuts.jpg" alt="Notes app — Peanuts theme" class="showcase-img">
+        <p class="showcase-caption">The Peanuts theme — warm colors and a hand-drawn feel.</p>
+      </div>
+
+      <div class="project-overview">
+        <div class="overview-block">
+          <h2>What it is</h2>
+          <p>A fast, privacy-first notes app that runs entirely on your machine. No cloud sync, no accounts, no telemetry — just your notes stored in IndexedDB. It ships as both a desktop app (via Electron) and a PWA for mobile.</p>
+          <p>The real hook is the theme system. Instead of boring light/dark toggles, each theme is a complete visual overhaul — from color palettes and typography to decorative elements and animations.</p>
+        </div>
+
+        <div class="overview-block">
+          <h2>Key Features</h2>
+          <ul class="feature-list">
+            <li><strong>6 full themes</strong> — Deus Ex, Star Trek TNG, Peanuts, Terminal, Polygon, and Wireframe. Each one is a completely different vibe.</li>
+            <li><strong>Instant search</strong> — Filter through all your notes in real-time from the sidebar.</li>
+            <li><strong>Offline-first</strong> — Service Worker caching means it works without internet. Data lives in IndexedDB.</li>
+            <li><strong>Desktop app</strong> — Electron wrapper for a native feel on Windows/Mac/Linux.</li>
+            <li><strong>Zero dependencies frontend</strong> — No React, no framework. Pure vanilla JS, HTML, and CSS custom properties.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="section-title">Themes</h2>
+      <p class="section-subtitle">Each theme is a complete visual overhaul — not just a color swap.</p>
+
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <img src="img/notes-deusex.jpg" alt="Notes — Deus Ex theme" loading="lazy">
+          <h3>Deus Ex</h3>
+          <p>UNATCO secure terminal aesthetic. Scan lines, amber text, that cyberpunk feel.</p>
+        </div>
+        <div class="screenshot-card">
+          <img src="img/notes-peanuts.jpg" alt="Notes — Peanuts theme" loading="lazy">
+          <h3>Peanuts</h3>
+          <p>Warm yellows, rounded elements, floating particles. Good grief, it's cozy.</p>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>How it's built</h2>
+        <p>The entire frontend is a single <code>index.html</code> file — no build step, no bundler. Themes are implemented with CSS custom properties, so switching themes is just swapping a data attribute on the root element. Each theme can override ~30 CSS variables for colors, fonts, borders, and effects.</p>
+        <p>The backend is a minimal Node.js HTTP server that serves static files and proxies API calls to Claude for an optional AI assistant feature. Data persistence is handled client-side with IndexedDB, so the server is really just a file server.</p>
+        <p>For desktop distribution, it wraps in Electron with a custom preload script for system integration. For mobile, it registers as a Progressive Web App with offline caching via Service Workers.</p>
+      </div>
+
+      <div class="overview-block">
+        <h2>Architecture</h2>
+        <div class="arch-diagram">
+          <div class="arch-layer">
+            <span class="arch-label">UI</span>
+            <span class="arch-detail">Vanilla JS + CSS Custom Properties (theme engine)</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Data</span>
+            <span class="arch-detail">IndexedDB for local persistence</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Sync</span>
+            <span class="arch-detail">Service Worker for offline-first caching</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Shell</span>
+            <span class="arch-detail">Electron (desktop) / PWA (mobile)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2024 Nick Eisele. Built with care.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
