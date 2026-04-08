@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Podcast Editor — Nick Eisele</title>
+  <meta name="description" content="A full-pipeline podcast editor with AI-powered transcription, silence detection, content flagging, and waveform editing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">NE</a>
+    <div class="nav-links">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#projects" onclick="closeMobile()">Projects</a>
+    <a href="index.html#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <header class="project-hero">
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+    <h1>Podcast Editor</h1>
+    <p class="project-hero-desc">A full-pipeline podcast editing app — upload raw footage, and it handles transcription, cleanup, editing, and export.</p>
+    <div class="project-meta">
+      <span class="tag">React 19</span>
+      <span class="tag">TypeScript</span>
+      <span class="tag">FastAPI</span>
+      <span class="tag">Whisper</span>
+      <span class="tag">Claude AI</span>
+      <span class="tag">WebSockets</span>
+      <span class="tag">FFmpeg</span>
+      <span class="tag">WaveSurfer.js</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="showcase">
+        <img src="img/podcast-editor.jpg" alt="Podcast Editor — Projects view" class="showcase-img">
+        <p class="showcase-caption">The projects dashboard — pick up where you left off or start a new episode.</p>
+      </div>
+
+      <div class="project-overview">
+        <div class="overview-block">
+          <h2>What it is</h2>
+          <p>A web-based podcast editor that takes raw video/audio recordings and runs them through an automated processing pipeline: transcription via Whisper, silence detection, AI-powered content flagging (via Claude), filler word detection, mouth noise cleanup, and noise reduction.</p>
+          <p>After processing, you get an interactive waveform editor where you can review, approve, or reject each detected issue — then export a polished MP4 or MP3. The whole thing runs locally, no cloud uploads needed.</p>
+        </div>
+
+        <div class="overview-block">
+          <h2>Key Features</h2>
+          <ul class="feature-list">
+            <li><strong>Automatic processing pipeline</strong> — Upload files and the backend handles: audio extraction, Whisper transcription, silence detection, AI content flagging, mouth noise detection, filler word detection, and noise reduction.</li>
+            <li><strong>Waveform timeline editor</strong> — Visual waveform with color-coded segments (silence, AI-flagged, bleeps, mutes, manual cuts). Click to review, drag to adjust boundaries.</li>
+            <li><strong>AI content flagging</strong> — Claude analyzes the transcript and flags potentially problematic segments with explanations, so you can review before publishing.</li>
+            <li><strong>Word-level bleeping</strong> — Search the transcript and bleep specific words with a tone or mute, with precise word-level timing from Whisper.</li>
+            <li><strong>Speaker diarization</strong> — Automatic speaker separation with color-coded tracks. Assign names and labels to each speaker.</li>
+            <li><strong>Real-time progress</strong> — WebSocket connection streams processing status and export progress, including live video frame previews during render.</li>
+            <li><strong>Multi-file support</strong> — Upload multiple MP4/MOV files that get concatenated in order, with 10MB chunked uploads for large files.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>The Processing Pipeline</h2>
+        <p>When you upload files, the backend kicks off a multi-stage pipeline. Each stage runs as a background task with real-time progress updates via WebSocket.</p>
+        <div class="arch-diagram">
+          <div class="arch-layer">
+            <span class="arch-label">Upload</span>
+            <span class="arch-detail">Chunked upload (10MB) → file concatenation → MP4/MOV</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Extract</span>
+            <span class="arch-detail">FFmpeg audio extraction → WAV for processing</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Transcribe</span>
+            <span class="arch-detail">faster-whisper → word-level timestamps + speaker indices</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Detect</span>
+            <span class="arch-detail">Silence, mouth noise, filler words, padding phrases (parallel)</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">AI Flag</span>
+            <span class="arch-detail">Claude reviews transcript → flags problematic content with reasons</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Edit</span>
+            <span class="arch-detail">Interactive waveform editor → approve/reject/adjust segments</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Export</span>
+            <span class="arch-detail">Noise reduction → normalization → FFmpeg render → MP4/MP3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>Architecture</h2>
+        <div class="arch-diagram">
+          <div class="arch-layer">
+            <span class="arch-label">Frontend</span>
+            <span class="arch-detail">React 19 + TypeScript + Zustand + WaveSurfer.js + Tailwind CSS</span>
+          </div>
+          <div class="arch-arrow">&darr; HTTP + WebSocket</div>
+          <div class="arch-layer">
+            <span class="arch-label">Backend</span>
+            <span class="arch-detail">FastAPI + SQLAlchemy (SQLite) + arq (Redis task queue)</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">AI / ML</span>
+            <span class="arch-detail">faster-whisper (transcription) + Anthropic Claude (content classification)</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Media</span>
+            <span class="arch-detail">FFmpeg (video/audio) + OpenCV + pydub + noisereduce + scipy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>Why I built it</h2>
+        <p>I was recording podcast episodes and the editing workflow was painful — silence trimming, content review, bleeping, and export all required different tools. I wanted one app that could take raw footage and handle the entire pipeline, with AI doing the tedious parts (flagging content, detecting filler words) so I could focus on creative decisions.</p>
+        <p>The waveform editor is the centerpiece. Each detected issue shows up as a color-coded segment on the timeline — amber for silence, red for AI-flagged content, pink for bleeps. You review each one, approve or reject, adjust the boundaries if needed, and export. The whole flow from raw footage to finished episode happens in one place.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2024 Nick Eisele. Built with care.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -130,6 +130,10 @@
   margin-bottom: 3.5rem;
 }
 
+.screenshot-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .screenshot-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -207,7 +211,8 @@
     gap: 0;
   }
 
-  .screenshot-grid {
+  .screenshot-grid,
+  .screenshot-grid-3 {
     grid-template-columns: 1fr;
   }
 

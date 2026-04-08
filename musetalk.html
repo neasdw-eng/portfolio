@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suno Video Generator — Nick Eisele</title>
+  <meta name="description" content="AI-powered lip-sync video generation using MuseTalk — portrait + audio in, realistic talking-head video out.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">NE</a>
+    <div class="nav-links">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#projects" onclick="closeMobile()">Projects</a>
+    <a href="index.html#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <header class="project-hero">
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+    <h1>Suno Video Generator</h1>
+    <p class="project-hero-desc">AI-powered lip-sync video generation — feed it a portrait and audio, get a realistic talking-head video out.</p>
+    <div class="project-meta">
+      <span class="tag">Python</span>
+      <span class="tag">PyTorch</span>
+      <span class="tag">FastAPI</span>
+      <span class="tag">Gradio</span>
+      <span class="tag">Whisper</span>
+      <span class="tag">VAE</span>
+      <span class="tag">FFmpeg</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="showcase">
+        <img src="img/musetalk.svg" alt="Suno Video Generator — Pipeline diagram" class="showcase-img">
+        <p class="showcase-caption">Portrait + audio in → AI lip-sync video out.</p>
+      </div>
+
+      <div class="project-overview">
+        <div class="overview-block">
+          <h2>What it is</h2>
+          <p>A real-time AI video generation tool built on MuseTalk that creates lip-synced talking videos from a single portrait image and an audio track. You give it a photo and some audio — a Suno-generated song, a voice recording, whatever — and it produces a video where the face naturally mouths along to the audio.</p>
+          <p>It runs locally on your GPU (NVIDIA), generating 30+ fps on a V100. The model uses a single-step inpainting approach (not iterative diffusion), which is what makes it fast enough for real-time use.</p>
+        </div>
+
+        <div class="overview-block">
+          <h2>Key Features</h2>
+          <ul class="feature-list">
+            <li><strong>Single-shot lip sync</strong> — One portrait image + any audio = realistic talking-head video. No training required per face.</li>
+            <li><strong>Real-time generation</strong> — 30+ fps on NVIDIA GPU using single-step inpainting, not iterative diffusion.</li>
+            <li><strong>Multi-language support</strong> — Works with English, Chinese, and Japanese audio out of the box.</li>
+            <li><strong>Fine-grained control</strong> — Adjustable bounding box, cheek width, jaw margin, and face parsing mode to tune the output.</li>
+            <li><strong>Debug mode</strong> — Test inpainting on the first frame before committing to a full render.</li>
+            <li><strong>Dual interface</strong> — Gradio web UI for interactive use, FastAPI endpoint for programmatic access.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>How it works</h2>
+        <p>The pipeline chains together several ML models. First, Whisper-Tiny encodes the audio into feature embeddings that capture mouth shape information. The reference portrait goes through a VAE encoder to get a latent representation. A face parsing model identifies the lip region to create an inpainting mask.</p>
+        <p>Then a custom UNet (architecturally similar to Stable Diffusion's, but repurposed for single-step inpainting) takes the masked latent, the audio embedding, and generates the lip region in a single forward pass — no iterative denoising. The result gets decoded through the VAE decoder, composited back onto the original frame, and rendered out as video with FFmpeg.</p>
+        <div class="arch-diagram">
+          <div class="arch-layer">
+            <span class="arch-label">Input</span>
+            <span class="arch-detail">Portrait image + audio file (MP3/WAV)</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Encode</span>
+            <span class="arch-detail">Whisper-Tiny (audio → embeddings) + VAE (image → latent space)</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Parse</span>
+            <span class="arch-detail">Face parsing model → lip region mask + bounding box</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Generate</span>
+            <span class="arch-detail">Custom UNet single-step inpainting → lip-synced latent</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Decode</span>
+            <span class="arch-detail">VAE decoder → composite onto original frame → FFmpeg render</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>The Gradio UI</h2>
+        <p>The interface is split into two columns. On the left: upload your audio and reference portrait, then dial in the parameters — bounding box shift, jaw margin, cheek width, and parsing mode. There's a "Test Inpainting" button to preview the first frame before committing to a full render. On the right: the debug preview and the final output video player.</p>
+        <p>For programmatic use, the FastAPI backend exposes a <code>POST /generate</code> endpoint that accepts the same inputs and returns the rendered video, making it easy to integrate into other pipelines.</p>
+      </div>
+
+      <div class="overview-block">
+        <h2>Why I built it</h2>
+        <p>I wanted to generate music videos from Suno tracks without filming anything. The idea was simple: take a Suno-generated song, pair it with a portrait, and get a video where the face sings along. MuseTalk's single-step approach was the right fit because it's fast enough to iterate quickly — you can test different portraits, adjust the parameters, and preview without waiting minutes for each render.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2024 Nick Eisele. Built with care.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
