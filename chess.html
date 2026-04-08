@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Chess — Nick Eisele</title>
+  <meta name="description" content="Multiplayer online chess with real-time sync via Firebase and AI opponent using minimax.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">NE</a>
+    <div class="nav-links">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#projects" onclick="closeMobile()">Projects</a>
+    <a href="index.html#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <header class="project-hero">
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+    <h1>Online Chess</h1>
+    <p class="project-hero-desc">Multiplayer chess with real-time game sync via Firebase, move validation, and an AI opponent powered by the minimax algorithm.</p>
+    <div class="project-meta">
+      <span class="tag">React</span>
+      <span class="tag">Firebase</span>
+      <span class="tag">chess.js</span>
+      <span class="tag">Minimax AI</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="project-overview">
+        <div class="overview-block">
+          <h2>What it is</h2>
+          <p>An online multiplayer chess game built with React and Firebase. Create a game, share the invite link, and play in real-time with moves synced instantly via Firebase. Or play against an AI that uses the minimax algorithm to evaluate positions.</p>
+        </div>
+        <div class="overview-block">
+          <h2>Key Features</h2>
+          <ul class="feature-list">
+            <li><strong>Real-time multiplayer</strong> — Firebase handles game state sync so moves appear instantly for both players.</li>
+            <li><strong>Full move validation</strong> — chess.js handles legal move detection, check/checkmate, and game state tracking.</li>
+            <li><strong>AI opponent</strong> — Minimax algorithm with a piece-count evaluation function. Not grandmaster-level, but it'll catch your blunders.</li>
+            <li><strong>Game creation flow</strong> — Create a game, get a shareable link, opponent joins and you're playing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="section-title">Screenshots</h2>
+
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/chess/create.png" alt="Chess — game creation" loading="lazy">
+          <h3>Create Game</h3>
+          <p>Start a new game and get a shareable invite link.</p>
+        </div>
+        <div class="screenshot-card">
+          <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/chess/2.png" alt="Chess — player joining" loading="lazy">
+          <h3>Player Connects</h3>
+          <p>Second player joins via the invite link.</p>
+        </div>
+        <div class="screenshot-card">
+          <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/chess/3.png" alt="Chess — game in progress" loading="lazy">
+          <h3>In Progress</h3>
+          <p>Real-time game with move validation and turn tracking.</p>
+        </div>
+        <div class="screenshot-card">
+          <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/chess/4.png" alt="Chess — game over" loading="lazy">
+          <h3>Game Over</h3>
+          <p>Checkmate detected, winner announced.</p>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>Architecture</h2>
+        <div class="arch-diagram">
+          <div class="arch-layer">
+            <span class="arch-label">UI</span>
+            <span class="arch-detail">React + chessboard-jsx (board rendering)</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Logic</span>
+            <span class="arch-detail">chess.js (move validation, game state, check/checkmate detection)</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">Sync</span>
+            <span class="arch-detail">Firebase Realtime Database (game state, turn tracking, invites)</span>
+          </div>
+          <div class="arch-arrow">&darr;</div>
+          <div class="arch-layer">
+            <span class="arch-label">AI</span>
+            <span class="arch-detail">Minimax algorithm with piece-count evaluation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>Source</h2>
+        <p><a href="https://github.com/njeisele/Chess" target="_blank" class="inline-link">View on GitHub &rarr;</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer"><p>&copy; 2024 Nick Eisele. Built with care.</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>

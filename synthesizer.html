@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synthesizer — Nick Eisele</title>
+  <meta name="description" content="A digital synthesizer built in C# that generates music from MusicXML files using additive synthesis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">NE</a>
+    <div class="nav-links">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#projects" onclick="closeMobile()">Projects</a>
+    <a href="index.html#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <header class="project-hero">
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+    <h1>Synthesizer</h1>
+    <p class="project-hero-desc">A digital synthesizer built in C# that reads sheet music files and plays them back using additive synthesis — combining sine and square waves to create complex tones.</p>
+    <div class="project-meta">
+      <span class="tag">C#</span>
+      <span class="tag">Additive Synthesis</span>
+      <span class="tag">MusicXML</span>
+      <span class="tag">Audio</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="showcase">
+        <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/synth/1.gif" alt="Synthesizer waveform visualization" class="showcase-img">
+        <p class="showcase-caption">Waveform visualization showing additive synthesis in action.</p>
+      </div>
+
+      <div class="project-overview">
+        <div class="overview-block">
+          <h2>What it is</h2>
+          <p>A synthesizer that takes MusicXML files (a standard format for sheet music) and plays them back by generating audio from scratch. No samples, no MIDI — it builds every sound from raw waveforms using additive synthesis.</p>
+          <p>You feed it a MusicXML file, it parses the musical score into notes with timing, and then generates audio by combining sine and square waves at the right frequencies and durations.</p>
+        </div>
+        <div class="overview-block">
+          <h2>How it works</h2>
+          <ul class="feature-list">
+            <li><strong>MusicXML Parser</strong> — Custom parser reads the XML-based sheet music format, extracting notes, durations, dynamics, and timing.</li>
+            <li><strong>Score → Notes</strong> — Converts the parsed musical score into a sequence of playable notes with precise timing.</li>
+            <li><strong>Additive Synthesis</strong> — Each note is built by combining multiple waveforms (sine, square) at harmonically related frequencies to create the desired timbre.</li>
+            <li><strong>WAV Output</strong> — The mathematical wave representations get sampled and written to WAV format for playback.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/synth/1.gif" alt="Waveform visualization" loading="lazy">
+          <h3>Waveform Output</h3>
+          <p>The synthesized audio waveform, built from combined sine and square waves.</p>
+        </div>
+        <div class="screenshot-card">
+          <img src="https://portfolio-nickolas-eiseles-projects.vercel.app/synth/2.png" alt="MusicXML input" loading="lazy">
+          <h3>MusicXML Input</h3>
+          <p>Sheet music parsed from MusicXML format into note sequences.</p>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>Listen</h2>
+        <p><a href="https://vocaroo.com/1ladlNYn0BAE" target="_blank" class="inline-link">Audio demo &rarr;</a></p>
+        <h2 style="margin-top: 2rem;">Source</h2>
+        <p><a href="https://github.com/njeisele/Synthesizer" target="_blank" class="inline-link">View on GitHub &rarr;</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer"><p>&copy; 2024 Nick Eisele. Built with care.</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>

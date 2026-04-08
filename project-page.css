@@ -204,6 +204,36 @@
   font-family: var(--mono);
 }
 
+/* ─── VIDEO EMBED ─── */
+.video-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin-bottom: 3rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── INLINE LINK ─── */
+.inline-link {
+  color: var(--accent);
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.inline-link:hover {
+  color: var(--accent-hover);
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   .project-overview {

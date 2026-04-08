@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithm Visualizer — Nick Eisele</title>
+  <meta name="description" content="Interactive visualizations for Dijkstra's, Graham Scan, and Quick Sort with step-by-step animations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">NE</a>
+    <div class="nav-links">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#projects" onclick="closeMobile()">Projects</a>
+    <a href="index.html#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <header class="project-hero">
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+    <h1>Algorithm Visualizer</h1>
+    <p class="project-hero-desc">Color-coded, step-by-step visualizations of classic algorithms — Dijkstra's shortest path, Graham Scan convex hull, and Quick Sort.</p>
+    <div class="project-meta">
+      <span class="tag">TypeScript</span>
+      <span class="tag">React</span>
+      <span class="tag">Algorithms</span>
+      <span class="tag">Visualization</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="overview-block">
+        <h2>What it is</h2>
+        <p>Interactive visualizations that animate algorithms step by step, using color coding to make each phase of the algorithm intuitive. Built with TypeScript and React, it covers graph algorithms, computational geometry, and sorting.</p>
+      </div>
+
+      <h2 class="section-title">Dijkstra's Shortest Path</h2>
+      <p class="section-subtitle">Green = visited nodes, purple = current edge being evaluated, blue = edges in final shortest path.</p>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/Nci05cv_XW0" title="Dijkstra Visualization" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <h2 class="section-title">Graham Scan (Convex Hull)</h2>
+      <p class="section-subtitle">Nodes sorted around anchor point, purple lines show the 3 nodes being evaluated for hull membership.</p>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/jKKxswfX9ng" title="Graham Scan Visualization" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <h2 class="section-title">Quick Sort</h2>
+      <p class="section-subtitle">Green = current pivot, red = section being sorted.</p>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/glBIHjfk7R4" title="Quick Sort Visualization" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <div class="overview-block">
+        <h2>Source</h2>
+        <p><a href="https://github.com/njeisele/AlgoVisualization" target="_blank" class="inline-link">View on GitHub &rarr;</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer"><p>&copy; 2024 Nick Eisele. Built with care.</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>

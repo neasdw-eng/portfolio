@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech-Based Code Editor — Nick Eisele</title>
+  <meta name="description" content="Eclipse plugin for hands-free Java development using Google Speech API.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">NE</a>
+    <div class="nav-links">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#projects" onclick="closeMobile()">Projects</a>
+    <a href="index.html#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <header class="project-hero">
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+    <h1>Speech-Based Code Editor</h1>
+    <p class="project-hero-desc">An Eclipse plugin that enables hands-free Java development through voice commands — built as a college team project at Brown.</p>
+    <div class="project-meta">
+      <span class="tag">Java</span>
+      <span class="tag">Eclipse Plugin</span>
+      <span class="tag">Google Speech API</span>
+      <span class="tag">Team Project</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="project-overview">
+        <div class="overview-block">
+          <h2>What it is</h2>
+          <p>A plugin for the Eclipse IDE that lets you write Java code using your voice. It listens in real-time via Google Speech API, converts speech to text, then maps that text to development actions — creating classes, writing methods, navigating files, all without touching the keyboard.</p>
+          <p>Built as a team project at Brown, it supports custom phrase configurations so you can define your own voice commands for specific coding patterns.</p>
+        </div>
+        <div class="overview-block">
+          <h2>How it works</h2>
+          <ul class="feature-list">
+            <li><strong>Real-time speech listening</strong> — Continuous audio capture streamed to Google Speech API for transcription.</li>
+            <li><strong>Custom phrase detection</strong> — Configurable phrase mappings that translate spoken commands into IDE actions.</li>
+            <li><strong>Text → Command pipeline</strong> — Speech text is parsed, matched against phrase configs, and dispatched as Eclipse editor commands.</li>
+            <li><strong>Nearly hands-free workflow</strong> — Write entire Java programs, navigate code, and manage files through voice.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>Demo</h2>
+        <p>Watch the full demo of writing a Java program using only voice commands:</p>
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/fSwXV9wqL68" title="Speech Based Code Editor Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h2>Source</h2>
+        <p><a href="https://github.com/speechtocode-brown-edu/Speech-Based-Code-Editor-Project" target="_blank" class="inline-link">View on GitHub &rarr;</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer"><p>&copy; 2024 Nick Eisele. Built with care.</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
